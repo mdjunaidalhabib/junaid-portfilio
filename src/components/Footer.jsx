@@ -1,16 +1,33 @@
 export default function Footer() {
   return (
     <footer className="footer-bg">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 text-center">
-        {/* Arabic phrase */}
-        <div dir="rtl" style={{ fontFamily:"'Amiri',serif", fontSize:'1rem', color:'rgba(201,168,76,.4)', marginBottom:'12px', letterSpacing:'.04em' }}>
-          جَزَاكَ اللّهُ خَيْرًا
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 text-center">
+
+        {/* جَزَاكَ اللّهُ خَيْرًا — Beautiful Arabic display */}
+        <div className="jazakallah-block">
+          <div className="jazakallah-ornament orn-l">✦</div>
+          <div className="jazakallah-ornament orn-r">✦</div>
+
+          <div className="jazakallah-top-line" />
+
+          <div dir="rtl" className="jazakallah-arabic">
+            جَزَاكَ اللّهُ خَيْرًا
+          </div>
+          <div className="jazakallah-trans">
+            জাযাকাল্লাহু খাইরান
+          </div>
+          <div className="jazakallah-meaning">
+            আল্লাহ তোমাকে উত্তম প্রতিদান দিন
+          </div>
+
+          <div className="jazakallah-bottom-line" />
         </div>
 
-        <div style={{ fontFamily:"'Tiro Bangla',serif", fontSize:'1.5rem', color:'var(--text)', marginBottom:'4px' }}>
+        {/* Name */}
+        <div style={{ fontFamily:"'Tiro Bangla',serif", fontSize:'1.5rem', color:'#0f172a', marginBottom:'4px', marginTop:'28px' }}>
           মোহাম্মদ জুনাইদ আল হাবিব
         </div>
-        <div style={{ fontSize:'.82rem', color:'var(--text-2)', marginBottom:'20px' }}>লেখক · মাদরাসা শিক্ষক · ইমাম ও খতিব</div>
+        <div style={{ fontSize:'.82rem', color:'#64748b', marginBottom:'24px' }}>লেখক · মাদরাসা শিক্ষক · ইমাম ও খতিব</div>
 
         <div className="flex justify-center gap-3 mb-8">
           {[
@@ -26,12 +43,12 @@ export default function Footer() {
 
         {/* Decorative divider */}
         <div className="flex items-center justify-center gap-3 mb-4">
-          <div style={{ width:'40px', height:'1px', background:'linear-gradient(90deg,transparent,rgba(201,168,76,.3))' }} />
-          <div style={{ fontSize:'.9rem', color:'rgba(201,168,76,.3)' }}>✦</div>
-          <div style={{ width:'40px', height:'1px', background:'linear-gradient(90deg,rgba(201,168,76,.3),transparent)' }} />
+          <div style={{ width:'40px', height:'1px', background:'linear-gradient(90deg,transparent,rgba(34,197,94,.35))' }} />
+          <div style={{ fontSize:'.9rem', color:'rgba(34,197,94,.4)' }}>✦</div>
+          <div style={{ width:'40px', height:'1px', background:'linear-gradient(90deg,rgba(34,197,94,.35),transparent)' }} />
         </div>
 
-        <div style={{ fontSize:'.78rem', color:'rgba(148,163,184,.4)' }}>© ২০২৬ মোহাম্মদ জুনাইদ আল হাবিব · সর্বস্বত্ব সংরক্ষিত</div>
+        <div style={{ fontSize:'.78rem', color:'#94a3b8' }}>© ২০২৬ মোহাম্মদ জুনাইদ আল হাবিব · সর্বস্বত্ব সংরক্ষিত</div>
       </div>
     </footer>
   )

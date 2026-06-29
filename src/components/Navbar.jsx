@@ -1,4 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
+
+const NAV_IMAGE = '/images/profile.jpeg'
 
 const navItems = [
   { href: '#porichiti', label: 'পরিচিতি' },
@@ -7,11 +9,11 @@ const navItems = [
   { href: '#lekhalekhi',label: 'লেখালেখি' },
 ]
 
-export default function Navbar({ navImage, onNavImageChange }) {
-  const [scrolled, setScrolled]   = useState(false)
-  const [menuOpen, setMenuOpen]   = useState(false)
-  const [active,   setActive]     = useState('')
-  const fileRef = useRef(null)
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [active,   setActive]   = useState('')
+  const [imgError, setImgError] = useState(false)
 
   useEffect(() => {
     const ids = ['porichiti','shikkha','dayitto','lekhalekhi','jogajog']
@@ -28,27 +30,17 @@ export default function Navbar({ navImage, onNavImageChange }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleFile = (e) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-    const url = URL.createObjectURL(file)
-    onNavImageChange?.(url)
-  }
-
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'nav-glass' : 'bg-transparent'}`}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between">
 
         {/* Logo */}
         <a href="#" className="flex items-center gap-2.5 no-underline group">
-          {/* Clickable avatar / upload */}
-          <div className="nav-logo-icon" title="ছবি আপলোড করতে ক্লিক করুন">
-            {navImage
-              ? <img src={navImage} alt="logo" style={{ display:'block' }} />
+          <div className="nav-logo-icon">
+            {!imgError
+              ? <img src={NAV_IMAGE} alt="logo" onError={() => setImgError(true)} style={{ display:'block' }} />
               : <span style={{ fontFamily:"'Tiro Bangla',serif", color:'#16a34a', fontSize:'.9rem', fontWeight:700 }}>জু</span>
             }
-            <div className="nav-upload-hint">ছবি<br/>বদলান</div>
-            <input type="file" accept="image/*" onChange={handleFile} style={{ position:'absolute', inset:0, opacity:0, cursor:'pointer', width:'100%', height:'100%', zIndex:2 }} />
           </div>
           <div>
             <div style={{ fontFamily:"'Tiro Bangla',serif", color:'#0f172a', fontSize:'1rem', fontWeight:600, lineHeight:1.2 }}>জুনাইদ আল হাবিব</div>

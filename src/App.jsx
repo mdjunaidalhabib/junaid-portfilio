@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Navbar    from './components/Navbar'
 import Hero      from './components/Hero'
 import Stats     from './components/Stats'
@@ -11,14 +10,10 @@ import Contact   from './components/Contact'
 import Footer    from './components/Footer'
 
 export default function App() {
-  const [sharedImage, setSharedImage] = useState(null)
-
-  const handleImageChange = (url) => setSharedImage(url)
-
   return (
     <div className="min-h-screen" style={{ background:'#f8fafc', color:'#0f172a' }}>
-      <Navbar navImage={sharedImage} onNavImageChange={handleImageChange} />
-      <Hero   heroImage={sharedImage} onHeroImageChange={handleImageChange} />
+      <Navbar />
+      <Hero />
       <Stats />
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <About />

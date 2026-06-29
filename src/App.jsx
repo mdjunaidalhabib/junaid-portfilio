@@ -1,19 +1,24 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Stats from './components/Stats'
-import About from './components/About'
+import { useState } from 'react'
+import Navbar    from './components/Navbar'
+import Hero      from './components/Hero'
+import Stats     from './components/Stats'
+import About     from './components/About'
 import Education from './components/Education'
-import Roles from './components/Roles'
-import Writings from './components/Writings'
-import Quote from './components/Quote'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import Roles     from './components/Roles'
+import Writings  from './components/Writings'
+import Quote     from './components/Quote'
+import Contact   from './components/Contact'
+import Footer    from './components/Footer'
 
 export default function App() {
+  const [sharedImage, setSharedImage] = useState(null)
+
+  const handleImageChange = (url) => setSharedImage(url)
+
   return (
-    <div className="min-h-screen" style={{ background: '#ffffff', color: '#0f172a' }}>
-      <Navbar />
-      <Hero />
+    <div className="min-h-screen" style={{ background:'#f8fafc', color:'#0f172a' }}>
+      <Navbar navImage={sharedImage} onNavImageChange={handleImageChange} />
+      <Hero   heroImage={sharedImage} onHeroImageChange={handleImageChange} />
       <Stats />
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <About />

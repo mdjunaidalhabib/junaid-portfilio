@@ -1,12 +1,5 @@
 import { useState, useEffect } from 'react'
-
-const NAV_IMAGE = '/images/profile.jpeg'
-const navItems = [
-  { href: '#porichiti', label: 'পরিচিতি' },
-  { href: '#shikkha',   label: 'শিক্ষাজীবন' },
-  { href: '#dayitto',   label: 'দায়িত্ব' },
-  { href: '#lekhalekhi',label: 'লেখালেখি' },
-]
+import { personalInfo, navItems } from '../data/portfolioData'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -37,13 +30,13 @@ export default function Navbar() {
         <a href="#" className="flex items-center gap-2.5 no-underline">
           <div className="w-[38px] h-[38px] rounded-[10px] bg-green-500/7 border border-green-500/22 flex items-center justify-center overflow-hidden">
             {!imgError
-              ? <img src={NAV_IMAGE} alt="logo" onError={() => setImgError(true)} className="w-full h-full object-cover rounded-[10px]" />
+              ? <img src={personalInfo.profileImage} alt="logo" onError={() => setImgError(true)} className="w-full h-full object-cover rounded-[10px]" />
               : <span className="font-['Tiro_Bangla'] text-green-700 text-[.9rem] font-bold">জু</span>
             }
           </div>
           <div>
-            <div className="font-['Tiro_Bangla'] text-slate-900 text-[1rem] font-semibold leading-tight">জুনাইদ আল হাবিব</div>
-            <div className="text-[.58rem] text-green-600 tracking-[.12em] uppercase">আলিম · লেখক · শিক্ষক</div>
+            <div className="font-['Tiro_Bangla'] text-slate-900 text-[1rem] font-semibold leading-tight">{personalInfo.name}</div>
+            <div className="text-[.58rem] text-green-600 tracking-[.12em] uppercase">{personalInfo.tagline}</div>
           </div>
         </a>
 
@@ -56,8 +49,9 @@ export default function Navbar() {
                 after:bg-gradient-to-r after:from-green-400 after:to-green-300 after:rounded-sm
                 after:scale-x-0 after:origin-left after:transition-transform after:duration-300
                 hover:text-green-700 hover:after:scale-x-100
-                ${active===i.href ? 'text-green-700 after:scale-x-100' : ''}`}
-            >{i.label}</a>
+                ${active===i.href ? 'text-green-700 after:scale-x-100' : ''}`}>
+              {i.label}
+            </a>
           ))}
           <a href="#jogajog"
             className="inline-flex items-center gap-2 bg-gradient-to-br from-green-400 to-green-600 text-white
@@ -70,7 +64,7 @@ export default function Navbar() {
 
         {/* Hamburger */}
         <button className={`md:hidden p-2 rounded-lg border-0 cursor-pointer transition-colors text-slate-500 ${menuOpen ? 'bg-green-500/8' : 'bg-transparent'}`}
-          aria-label="মেনু" onClick={() => setMenuOpen(v=>!v)}>
+          aria-label="মেনু" onClick={() => setMenuOpen(v => !v)}>
           {menuOpen
             ? <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             : <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
@@ -83,13 +77,13 @@ export default function Navbar() {
         <div className="md:hidden px-4 pb-4 pt-2 bg-white/97 backdrop-blur-xl border-t border-green-500/10 animate-nav-drop">
           <div className="flex flex-col gap-1">
             {navItems.map(i => (
-              <a key={i.href} href={i.href} onClick={()=>setMenuOpen(false)}
+              <a key={i.href} href={i.href} onClick={() => setMenuOpen(false)}
                 className="block px-4 py-3 rounded-xl no-underline text-[.95rem] font-medium text-gray-700
                   hover:bg-green-500/7 hover:text-green-700 transition-colors">
                 {i.label}
               </a>
             ))}
-            <a href="#jogajog" onClick={()=>setMenuOpen(false)}
+            <a href="#jogajog" onClick={() => setMenuOpen(false)}
               className="mt-2 flex justify-center items-center gap-2 bg-gradient-to-br from-green-400 to-green-600
                 text-white py-3 px-6 rounded-full font-bold text-[.88rem] no-underline
                 shadow-[0_4px_14px_rgba(34,197,94,.3)]">

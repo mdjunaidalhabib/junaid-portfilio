@@ -1,10 +1,5 @@
 import { useReveal } from '../hooks/useReveal'
-
-const writings = [
-  { type:'বই',     title:'[বইয়ের নাম লিখুন]', sub:'[প্রকাশনী] · ২০xx', icon:'📗', gold:true },
-  { type:'বই',     title:'[বইয়ের নাম লিখুন]', sub:'[প্রকাশনী] · ২০xx', icon:'📘', gold:true },
-  { type:'প্রবন্ধ', title:'[ম্যাগাজিন/পত্রিকার নাম]-এ নিয়মিত কলাম', sub:'চলমান', icon:'📰', gold:false },
-]
+import { writings } from '../data/portfolioData'
 
 export default function Writings() {
   const ref = useReveal()
@@ -22,7 +17,7 @@ export default function Writings() {
 
       <div className="flex flex-col gap-3">
         {writings.map((w, i) => (
-          <a key={i} href="#"
+          <a key={i} href={w.href || '#'}
             className="flex items-center gap-3.5 px-4 py-4 border border-slate-900/7 rounded-[13px]
               bg-white no-underline text-inherit transition-all duration-300
               hover:border-green-400/22 hover:bg-green-500/2 hover:translate-x-1.5 hover:shadow-[0_4px_18px_rgba(34,197,94,.07)]">

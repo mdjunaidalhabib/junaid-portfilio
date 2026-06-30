@@ -1,10 +1,5 @@
 import { useReveal } from '../hooks/useReveal'
-
-const roles = [
-  { icon:'🕌', title:'ইমাম ও খতিব', desc:'[মসজিদের নাম লিখুন] — সাল ২০xx থেকে নিয়মিত ইমামতি ও জুমার খুতবা পরিচালনা করছেন।', accentFrom:'from-yellow-400', accentTo:'to-yellow-600', hoverBg:'hover:bg-yellow-500/6' },
-  { icon:'📖', title:'মাদরাসা শিক্ষক', desc:'[মাদরাসার নাম লিখুন] — তাফসীর, হাদীস ও আরবি সাহিত্য বিভাগে শিক্ষকতা করছেন।', accentFrom:'from-green-400', accentTo:'to-green-600', hoverBg:'hover:bg-green-500/6' },
-  { icon:'✍️', title:'লেখক', desc:'বিভিন্ন ইসলামি ম্যাগাজিন ও অনলাইন প্ল্যাটফর্মে নিয়মিত প্রবন্ধ ও বই লিখে চলেছেন।', accentFrom:'from-yellow-400', accentTo:'to-yellow-600', hoverBg:'hover:bg-yellow-500/6' },
-]
+import { roles } from '../data/portfolioData'
 
 export default function Roles() {
   const ref = useReveal()
@@ -26,12 +21,10 @@ export default function Roles() {
             shadow-[0_1px_6px_rgba(0,0,0,.04),0_4px_18px_rgba(0,0,0,.03)] p-6 sm:p-7 cursor-default
             transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_10px_40px_rgba(0,0,0,.09)] ${r.hoverBg}
             group`}>
-            {/* Corner ornament */}
             <div className="absolute top-3 left-3 w-[18px] h-[18px] border-t border-l border-green-400/30 rounded-tl-[3px]" />
             <div className="text-3xl mb-4 mt-2">{r.icon}</div>
             <div className="font-['Tiro_Bangla'] text-[1.2rem] text-slate-900 mb-2.5">{r.title}</div>
             <p className="text-[.875rem] leading-7 text-slate-500">{r.desc}</p>
-            {/* Bottom bar */}
             <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r ${r.accentFrom} ${r.accentTo} via-transparent
               scale-x-0 origin-left transition-transform duration-400 group-hover:scale-x-100 rounded-b-2xl`} />
           </div>

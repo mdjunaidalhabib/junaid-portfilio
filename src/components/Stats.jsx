@@ -1,14 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-
-const stats = [
-  { val:12,   suf:'+',  label:'বছরের অভিজ্ঞতা', icon:'🕌' },
-  { val:50,   suf:'+',  label:'প্রকাশিত রচনা',  icon:'✍️' },
-  { val:5,    suf:'টি', label:'প্রকাশিত বই',    icon:'📚' },
-  { val:1000, suf:'+',  label:'ছাত্র-ছাত্রী',   icon:'🎓' },
-]
+import { stats } from '../data/portfolioData'
 
 export default function Stats() {
-  const [counts, setCounts] = useState(stats.map(()=>0))
+  const [counts, setCounts] = useState(stats.map(() => 0))
   const [started, setStarted] = useState(false)
   const ref = useRef(null)
 
@@ -16,20 +10,25 @@ export default function Stats() {
     const obs = new IntersectionObserver(([e]) => {
       if (e.isIntersecting && !started) {
         setStarted(true)
-        stats.forEach((s,i) => {
-          let v=0; const step=Math.max(1,Math.ceil(s.val/90))
-          const t=setInterval(()=>{ v=Math.min(v+step,s.val); setCounts(p=>{const n=[...p];n[i]=v;return n}); if(v>=s.val)clearInterval(t) },18)
+        stats.forEach((s, i) => {
+          let v = 0
+          const step = Math.max(1, Math.ceil(s.val / 90))
+          const t = setInterval(() => {
+            v = Math.min(v + step, s.val)
+            setCounts(p => { const n = [...p]; n[i] = v; return n })
+            if (v >= s.val) clearInterval(t)
+          }, 18)
         })
       }
-    },{ threshold:.3 })
-    if(ref.current) obs.observe(ref.current)
-    return ()=>obs.disconnect()
-  },[started])
+    }, { threshold: .3 })
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [started])
 
   return (
     <div ref={ref} className="bg-gradient-to-br from-green-50 to-slate-50 border-t border-green-500/10 border-b border-green-500/8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-        {stats.map((s,i)=>(
+        {stats.map((s, i) => (
           <div key={i} className="text-center py-6 px-3.5 rounded-2xl bg-white border border-green-500/10
             relative overflow-hidden transition-all duration-300
             before:content-[''] before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2

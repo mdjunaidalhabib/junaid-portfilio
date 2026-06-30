@@ -1,10 +1,5 @@
 import { useReveal } from '../hooks/useReveal'
-
-const educations = [
-  { year:'২০XX', degree:'দাওরায়ে হাদীস (তাকমিল)', inst:'[প্রতিষ্ঠানের নাম]', badge:'সর্বোচ্চ ফলাফলে উত্তীর্ণ', highlight:true },
-  { year:'২০XX', degree:'ফাজিল / আলিম', inst:'[প্রতিষ্ঠানের নাম]' },
-  { year:'২০XX', degree:'মাধ্যমিক (দাখিল)', inst:'[প্রতিষ্ঠানের নাম]' },
-]
+import { educations } from '../data/portfolioData'
 
 export default function Education() {
   const ref = useReveal()

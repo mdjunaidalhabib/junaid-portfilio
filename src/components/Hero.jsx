@@ -1,15 +1,6 @@
 import { useEffect, useState } from "react";
-import {
-  Phone,
-  MapPin,
-  Mail,
-  Facebook,
-  Youtube,
-  Send,
-  Twitter,
-  Download,
-  MessageCircle,
-} from "lucide-react";
+import { Phone, MapPin, Mail, Download, MessageCircle } from "lucide-react";
+import { FaFacebook, FaYoutube, FaTwitter, FaWhatsapp } from "react-icons/fa";
 
 const PROFILE_IMAGE = "/images/profile.jpeg";
 
@@ -17,91 +8,95 @@ export default function Hero() {
   const [vis, setVis] = useState(false);
   const [imgError, setImgError] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => setVis(true), 100);
-  }, []);
+  useEffect(() => { setTimeout(() => setVis(true), 100); }, []);
 
   return (
-    <section
-      className="relative flex items-center overflow-hidden"
-      style={{ background: "#ffffff", minHeight: "calc(100vh - 70px)" }}
-    >
-      <div className="mesh-bg absolute inset-0 pointer-events-none" />
+    <section className="relative flex items-center overflow-hidden bg-white min-h-[calc(100vh-64px)]">
+      {/* Mesh background */}
       <div
-        className="grid-pattern absolute inset-0 pointer-events-none"
-        style={{ opacity: 0.6 }}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle at 15% 50%,rgba(34,197,94,.06) 0%,transparent 45%),radial-gradient(circle at 85% 20%,rgba(34,197,94,.04) 0%,transparent 40%),radial-gradient(circle at 60% 85%,rgba(74,222,128,.03) 0%,transparent 35%)`,
+        }}
       />
       <div
-        className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full pointer-events-none"
+        className="absolute inset-0 pointer-events-none opacity-60"
+        style={{
+          backgroundImage: `linear-gradient(rgba(34,197,94,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.04) 1px,transparent 1px)`,
+          backgroundSize: "48px 48px",
+        }}
+      />
+      <div
+        className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full pointer-events-none translate-x-[30%] -translate-y-[30%]"
         style={{
           background:
             "radial-gradient(circle,rgba(34,197,94,.07) 0%,transparent 65%)",
-          transform: "translate(30%,-30%)",
         }}
       />
       <div
-        className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full pointer-events-none"
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full pointer-events-none -translate-x-[30%] translate-y-[30%]"
         style={{
           background:
             "radial-gradient(circle,rgba(74,222,128,.04) 0%,transparent 65%)",
-          transform: "translate(-30%,30%)",
         }}
       />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 w-full">
-        <div className="hero-grid">
-          {/* ── LEFT: PHOTO ── */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center">
+          {/* LEFT: PHOTO */}
           <div
-            className="hero-left"
+            className="flex justify-center items-center md:pr-[52px] md:border-r md:border-green-500/10 pb-10 md:pb-0"
             style={{
               opacity: vis ? 1 : 0,
               transform: vis ? "translateX(0)" : "translateX(-40px)",
               transition: "all .8s cubic-bezier(.22,1,.36,1) .3s",
             }}
           >
-            <div className="photo-outer">
-              <div className="ring-spin" />
-              <div className="ring-spin-rev" />
-              <div className="photo-circle">
+            <div className="relative inline-block">
+              <div
+                className="absolute rounded-full border border-dashed border-green-400/28 animate-spin-slow"
+                style={{ inset: "-14px" }}
+              />
+              <div
+                className="absolute rounded-full border border-green-400/10 animate-spin-slow-rev"
+                style={{ inset: "-26px" }}
+              />
+              <div
+                className="relative w-[300px] h-[300px] sm:w-[260px] sm:h-[260px] rounded-full overflow-hidden border-[3px] border-green-400/20
+                bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center z-10
+                shadow-[0_0_0_8px_rgba(34,197,94,.04),0_20px_50px_rgba(34,197,94,.12)] hover:border-green-400/50 transition-[border-color] duration-300"
+              >
                 {!imgError ? (
                   <img
                     src={PROFILE_IMAGE}
                     alt="প্রোফাইল"
                     onError={() => setImgError(true)}
-                    style={{ display: "block" }}
+                    className="w-full h-full object-cover"
                   />
                 ) : (
                   <div className="text-center select-none">
-                    <div
-                      style={{
-                        fontFamily: "'Tiro Bangla',serif",
-                        fontSize: "5.5rem",
-                        lineHeight: 1,
-                        color: "rgba(22,163,74,.25)",
-                      }}
-                    >
+                    <div className="font-['Tiro_Bangla'] text-[5.5rem] leading-none text-green-600/25">
                       জু
                     </div>
-                    <div
-                      style={{
-                        fontSize: ".65rem",
-                        color: "rgba(22,163,74,.35)",
-                        marginTop: "8px",
-                        letterSpacing: ".05em",
-                      }}
-                    >
+                    <div className="text-[.65rem] text-green-600/35 mt-2 tracking-[.05em]">
                       ছবি যোগ করুন
                     </div>
                   </div>
                 )}
               </div>
-              <div className="photo-badge">✦ আলিম ও খতিব</div>
+              <div
+                className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-green-400 to-green-600
+                text-white text-[.68rem] font-bold px-5 py-1.5 rounded-full whitespace-nowrap z-20
+                shadow-[0_5px_16px_rgba(34,197,94,.35)] tracking-[.05em]"
+              >
+                ✦ আলিম ও খতিব
+              </div>
             </div>
           </div>
 
-          {/* ── RIGHT: INFO ── */}
+          {/* RIGHT: INFO */}
           <div
-            className="hero-right"
+            className="flex flex-col justify-center md:pl-[52px] pt-8 md:pt-0"
             style={{
               opacity: vis ? 1 : 0,
               transform: vis ? "translateX(0)" : "translateX(40px)",
@@ -109,39 +104,30 @@ export default function Hero() {
             }}
           >
             <h1
-              className="shimmer-text"
+              className="font-['Tiro_Bangla'] mb-[18px] block"
               style={{
-                fontFamily: "'Tiro Bangla',serif",
                 fontSize: "clamp(2.2rem,5vw,3.4rem)",
                 lineHeight: 1.35,
-                marginBottom: "18px",
-                display: "block",
+                background: "linear-gradient(135deg,#0f172a 0%,#16a34a 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
               }}
             >
               জুনাইদ আল হাবিব
             </h1>
 
-            {/* Badges */}
             <div className="flex flex-wrap gap-2 mb-5">
               {["লেখক", "মাদরাসা শিক্ষক", "ইমাম ও খতিব"].map((r) => (
                 <span
                   key={r}
-                  style={{
-                    fontSize: ".78rem",
-                    fontWeight: 600,
-                    padding: "4px 13px",
-                    borderRadius: "9999px",
-                    background: "rgba(34,197,94,.07)",
-                    color: "#16a34a",
-                    border: "1px solid rgba(34,197,94,.2)",
-                  }}
+                  className="text-[.78rem] font-semibold px-[13px] py-1 rounded-full bg-green-500/7 text-green-700 border border-green-400/20"
                 >
                   {r}
                 </span>
               ))}
             </div>
 
-            {/* Contacts */}
             <div className="flex flex-col gap-2.5 mb-5">
               {[
                 {
@@ -152,114 +138,81 @@ export default function Hero() {
                 { icon: <MapPin size={13} />, label: "ঢাকা, বাংলাদেশ" },
                 {
                   icon: <Mail size={13} />,
-                  label: "[email protected]",
-                  href: "mailto:[email protected]",
+                  label: "mdjunaidalhabib2626@gmail.com",
+                  href: "mailto:mdjunaidalhabib2626@gmail.com",
                 },
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-2.5"
-                  style={{ fontSize: ".85rem" }}
+                  className="flex items-center gap-2.5 text-[.85rem]"
                 >
-                  <div
-                    className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                    style={{
-                      background: "rgba(34,197,94,.07)",
-                      border: "1px solid rgba(34,197,94,.18)",
-                      color: "#22c55e",
-                    }}
-                  >
+                  <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-green-500/7 border border-green-400/18 text-green-400">
                     {item.icon}
                   </div>
                   {item.href ? (
                     <a
                       href={item.href}
-                      style={{
-                        color: "#16a34a",
-                        textDecoration: "none",
-                        fontWeight: 500,
-                      }}
+                      className="text-green-700 no-underline font-medium"
                     >
                       {item.label}
                     </a>
                   ) : (
-                    <span style={{ color: "#475569" }}>{item.label}</span>
+                    <span className="text-slate-600">{item.label}</span>
                   )}
                 </div>
               ))}
             </div>
 
-            {/* Social */}
             <div className="flex items-center gap-2 mb-6">
               {[
-                { label: "ফেসবুক", icon: <Facebook size={15} />, href: "#" },
-                { label: "ইউটিউব", icon: <Youtube size={15} />, href: "#" },
-                { label: "টেলিগ্রাম", icon: <Send size={15} />, href: "#" },
-                { label: "টুইটার", icon: <Twitter size={15} />, href: "#" },
+                {
+                  label: "ফেসবুক",
+                  icon: <FaFacebook size={15} />,
+                  href: "https://www.facebook.com/share/1Biz9s6ueR",
+                },
+                {
+                  label: "হোয়াটসঅ্যাপ",
+                  icon: <FaWhatsapp size={15} />,
+                  href: "https://wa.me/8801624114405",
+                },
               ].map(({ label, icon, href }) => (
                 <a
-                  href={href}
                   key={label}
-                  className="soc-btn"
+                  href={href}
                   aria-label={label}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                  className="w-[42px] h-[42px] rounded-full border-[1.5px] border-green-400/20 bg-green-500/5
+                    flex items-center justify-center text-green-700 no-underline
+                    hover:bg-gradient-to-br hover:from-green-400 hover:to-green-600 hover:border-green-400
+                    hover:text-white hover:-translate-y-1 hover:scale-110 hover:shadow-[0_8px_20px_rgba(34,197,94,.3)]
+                    transition-all duration-300"
                 >
                   {icon}
                 </a>
               ))}
             </div>
 
-            {/* CTAs */}
             <div className="flex flex-wrap gap-3">
               <a
                 href="#jogajog"
-                className="btn-primary"
-                style={{ display: "flex", alignItems: "center", gap: "6px" }}
+                className="inline-flex items-center gap-1.5 bg-gradient-to-br from-green-400 to-green-600
+                text-white py-3 px-[26px] rounded-full font-bold text-[.88rem] no-underline
+                shadow-[0_4px_14px_rgba(34,197,94,.3)] hover:shadow-[0_7px_24px_rgba(34,197,94,.44)]
+                hover:-translate-y-0.5 transition-all duration-300"
               >
                 <MessageCircle size={14} />
                 যোগাযোগ করুন
               </a>
               <a
                 href="#"
-                className="btn-secondary"
-                style={{ display: "flex", alignItems: "center", gap: "6px" }}
+                className="inline-flex items-center gap-1.5 bg-transparent text-slate-900 border-[1.5px] border-slate-900/14
+                py-3 px-[26px] rounded-full font-semibold text-[.88rem] no-underline
+                hover:border-green-400 hover:text-green-700 hover:bg-green-500/5 hover:-translate-y-0.5 transition-all duration-300"
               >
                 <Download size={14} />
                 জীবনবৃত্তান্ত
               </a>
             </div>
           </div>
-        </div>
-
-        {/* Scroll hint */}
-        <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
-          style={{ opacity: vis ? 0.4 : 0, transition: "opacity 1s ease 1.2s" }}
-        >
-          <span
-            style={{
-              fontSize: ".62rem",
-              letterSpacing: ".18em",
-              textTransform: "uppercase",
-              color: "#94a3b8",
-            }}
-          >
-            স্ক্রল করুন
-          </span>
-          <svg
-            width="14"
-            height="14"
-            fill="none"
-            stroke="#94a3b8"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
         </div>
       </div>
     </section>

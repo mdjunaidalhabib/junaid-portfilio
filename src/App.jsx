@@ -11,20 +11,20 @@ import Footer    from './components/Footer'
 
 export default function App() {
   return (
-    <div className="min-h-screen" style={{ background:'#f8fafc', color:'#0f172a' }}>
+    <div className="min-h-screen bg-slate-50 text-slate-900">
       <Navbar />
       <Hero />
       <Stats />
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <About />
-        <div className="section-divider" />
+        <div className="h-px bg-gradient-to-r from-transparent via-green-400/14 to-transparent" />
         <Education />
-        <div className="section-divider" />
+        <div className="h-px bg-gradient-to-r from-transparent via-green-400/14 to-transparent" />
         <Roles />
-        <div className="section-divider" />
+        <div className="h-px bg-gradient-to-r from-transparent via-green-400/14 to-transparent" />
         <Writings />
         <Quote />
-        <div className="section-divider" />
+        <div className="h-px bg-gradient-to-r from-transparent via-green-400/14 to-transparent" />
         <Contact />
       </div>
       <Footer />

@@ -1,37 +1,82 @@
 import { useReveal } from '../hooks/useReveal'
+import { FaEnvelope, FaPhone, FaMapMarker, FaFacebook, FaYoutube, FaTelegram } from 'react-icons/fa'
 
 export default function Contact() {
   const ref = useReveal()
   return (
-    <section id="jogajog" ref={ref} className="reveal py-20">
-      <div className="sec-pill">✦ যোগাযোগ</div>
-      <h2 className="sec-title">যোগাযোগ করুন</h2>
-      <div className="sec-accent-line" />
+    <section
+      id="jogajog"
+      ref={ref}
+      className="opacity-0 translate-y-7 transition-[opacity,transform] duration-[650ms] ease-[cubic-bezier(.22,1,.36,1)] py-20
+      [&.visible]:opacity-100 [&.visible]:translate-y-0"
+    >
+      <div
+        className="inline-flex items-center gap-1.5 text-[.6rem] font-bold tracking-[.2em] uppercase
+        text-green-700 bg-green-500/7 border border-green-400/20 px-3 py-1 rounded-full mb-2.5"
+      >
+        ✦ যোগাযোগ
+      </div>
+      <h2
+        className="font-['Tiro_Bangla'] text-slate-900 mb-2 leading-tight"
+        style={{ fontSize: "clamp(1.6rem,4vw,2.2rem)" }}
+      >
+        যোগাযোগ করুন
+      </h2>
+      <div className="h-0.5 w-10 bg-gradient-to-r from-green-400 to-transparent rounded mb-9" />
 
       <div className="grid sm:grid-cols-2 gap-5">
-        {/* Direct */}
-        <div className="card p-6 sm:p-7 relative overflow-hidden">
-          <div style={{ position:'absolute', top:0, left:0, right:0, height:'2px', background:'linear-gradient(90deg,transparent,var(--gold),transparent)' }} />
-          <div style={{ fontFamily:"'Tiro Bangla',serif", fontSize:'1.1rem', color:'var(--text)', marginBottom:'20px', fontWeight:600 }}>প্রত্যক্ষ যোগাযোগ</div>
+        {/* Direct contact */}
+        <div className="bg-white border border-slate-900/7 rounded-2xl shadow-[0_1px_6px_rgba(0,0,0,.04),0_4px_18px_rgba(0,0,0,.03)] p-6 sm:p-7 relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent" />
+          <div className="font-['Tiro_Bangla'] text-[1.1rem] text-slate-900 font-semibold mb-5">
+            প্রত্যক্ষ যোগাযোগ
+          </div>
           <div className="flex flex-col gap-4">
             {[
-              { icon:<><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></>, label:'ইমেইল', value:'[email protected]', href:'mailto:[email protected]' },
-              { icon:<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.22 2 2 0 012.22.01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>, label:'মোবাইল', value:'+880 1XXXXXXXXX', href:'tel:+8801XXXXXXXXX' },
-              { icon:<><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></>, label:'ঠিকানা', value:'ঢাকা, বাংলাদেশ' },
+              {
+                icon: <FaPhone size={14} />,
+                label: "মোবাইল",
+                value: "+880 1624-114405",
+                href: "tel:+8801624114405",
+              },
+              {
+                icon: <FaEnvelope size={14} />,
+                label: "ইমেইল",
+                value: "mdjunaidalhabib2626@gmail.com",
+                href: "mailto:mdjunaidalhabib2626@gmail.com",
+              },
+              {
+                icon: <FaMapMarker size={14} />,
+                label: "ঠিকানা",
+                value: "ঢাকা, বাংলাদেশ",
+              },
             ].map(({ icon, label, value, href }) => (
-              <div key={label} className="contact-item">
-                <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background:'rgba(201,168,76,.06)', border:'1px solid rgba(201,168,76,.16)' }}>
-                  <svg width="14" height="14" fill="none" stroke="var(--gold)" strokeWidth="2" viewBox="0 0 24 24">{icon}</svg>
+              <div
+                key={label}
+                className="flex items-start gap-3 p-2.5 rounded-[10px] hover:bg-yellow-500/4 transition-colors"
+              >
+                <div
+                  className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0
+                  bg-yellow-400/6 border border-yellow-400/16 text-yellow-600"
+                >
+                  {icon}
                 </div>
                 <div>
-                  <div style={{ fontSize:'.65rem', fontWeight:700, textTransform:'uppercase', letterSpacing:'.14em', color:'var(--gold)', marginBottom:'3px' }}>{label}</div>
-                  {href
-                    ? <a href={href} style={{ fontSize:'.9rem', color:'var(--text)', textDecoration:'none', fontWeight:500, transition:'color .2s' }}
-                        onMouseOver={e=>e.target.style.color='var(--gold-2)'}
-                        onMouseOut={e=>e.target.style.color='var(--text)'}>{value}</a>
-                    : <span style={{ fontSize:'.9rem', color:'var(--text)', fontWeight:500 }}>{value}</span>
-                  }
+                  <div className="text-[.65rem] font-bold uppercase tracking-[.14em] text-yellow-500 mb-0.5">
+                    {label}
+                  </div>
+                  {href ? (
+                    <a
+                      href={href}
+                      className="text-[.9rem] text-slate-900 no-underline font-medium hover:text-yellow-500 transition-colors"
+                    >
+                      {value}
+                    </a>
+                  ) : (
+                    <span className="text-[.9rem] text-slate-900 font-medium">
+                      {value}
+                    </span>
+                  )}
                 </div>
               </div>
             ))}
@@ -39,26 +84,62 @@ export default function Contact() {
         </div>
 
         {/* Social */}
-        <div className="card p-6 sm:p-7 relative overflow-hidden">
-          <div style={{ position:'absolute', top:0, left:0, right:0, height:'2px', background:'linear-gradient(90deg,transparent,rgba(34,197,94,.4),transparent)' }} />
-          <div style={{ fontFamily:"'Tiro Bangla',serif", fontSize:'1.1rem', color:'var(--text)', marginBottom:'20px', fontWeight:600 }}>সামাজিক মাধ্যম</div>
+        <div className="bg-white border border-slate-900/7 rounded-2xl shadow-[0_1px_6px_rgba(0,0,0,.04),0_4px_18px_rgba(0,0,0,.03)] p-6 sm:p-7 relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-green-400/40 to-transparent" />
+          <div className="font-['Tiro_Bangla'] text-[1.1rem] text-slate-900 font-semibold mb-5">
+            সামাজিক মাধ্যম
+          </div>
           <div className="flex flex-col gap-3">
             {[
-              { label:'ফেসবুক পেজ', emoji:'📘', color:'#3b82f6', bg:'rgba(59,130,246,.07)', border:'rgba(59,130,246,.25)' },
-              { label:'ইউটিউব চ্যানেল', emoji:'▶️', color:'#ef4444', bg:'rgba(239,68,68,.07)', border:'rgba(239,68,68,.25)' },
-              { label:'টেলিগ্রাম', emoji:'✈️', color:'#0ea5e9', bg:'rgba(14,165,233,.07)', border:'rgba(14,165,233,.25)' },
-            ].map(s => (
-              <a key={s.label} href="#" className="social-row"
-                onMouseOver={e=>{ e.currentTarget.style.borderColor=s.border; e.currentTarget.style.background=s.bg; e.currentTarget.style.color=s.color }}
-                onMouseOut={e=>{ e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.background='transparent'; e.currentTarget.style.color='var(--text-2)' }}>
-                <span style={{ fontSize:'1.2rem' }}>{s.emoji}</span>
-                <span style={{ fontSize:'.9rem', fontWeight:500 }}>{s.label}</span>
-                <span style={{ marginLeft:'auto', opacity:.35, fontSize:'.9rem' }}>→</span>
+              {
+                label: "ফেসবুক পেজ",
+                icon: <FaFacebook size={16} />,
+                hoverBorder: "rgba(59,130,246,.25)",
+                hoverBg: "rgba(59,130,246,.07)",
+                hoverColor: "#3b82f6",
+                href: "https://www.facebook.com/share/1CDyFiZyhe",
+              },
+              {
+                label: "ইউটিউব চ্যানেল",
+                icon: <FaYoutube size={16} />,
+                hoverBorder: "rgba(239,68,68,.25)",
+                hoverBg: "rgba(239,68,68,.07)",
+                hoverColor: "#ef4444",
+                href: "#",
+              },
+              {
+                label: "টেলিগ্রাম",
+                icon: <FaTelegram size={16} />,
+                hoverBorder: "rgba(14,165,233,.25)",
+                hoverBg: "rgba(14,165,233,.07)",
+                hoverColor: "#0ea5e9",
+                href: "#",
+              },
+            ].map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                className="flex items-center gap-3 px-3.5 py-3 border border-slate-900/8 rounded-[11px] no-underline
+                  text-slate-500 transition-all duration-200 hover:translate-x-1"
+                onMouseOver={(e) => {
+                  e.currentTarget.style.borderColor = s.hoverBorder;
+                  e.currentTarget.style.background = s.hoverBg;
+                  e.currentTarget.style.color = s.hoverColor;
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.borderColor = "";
+                  e.currentTarget.style.background = "";
+                  e.currentTarget.style.color = "";
+                }}
+              >
+                <span className="text-[1.1rem]">{s.icon}</span>
+                <span className="text-[.9rem] font-medium">{s.label}</span>
+                <span className="ml-auto opacity-35 text-[.9rem]">→</span>
               </a>
             ))}
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
